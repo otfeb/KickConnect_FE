@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./MatchList.module.css";
 import axios from "axios";
 
-const MatchList = () => {
+const MatchList = ({ data }) => {
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/matches");
+                console.log(data)
+                const response = await axios.get(
+                    "http://localhost:8080/api/matches", {
+                    params: { data: data }
+                }
+                );
                 setMatches(response.data); // API 응답 데이터를 상태에 저장
             } catch (error) {
                 console.error("Error fetching matches:", error);
@@ -19,7 +24,7 @@ const MatchList = () => {
         };
 
         fetchMatches();
-    }, []);
+    }, [data]);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
