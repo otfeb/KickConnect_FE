@@ -8,6 +8,13 @@
     padding: 20px 0;
 }
 
+.dateList {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    width: 600px;
+}
+
 .dateItem {
     display: flex;
     flex-direction: column;
