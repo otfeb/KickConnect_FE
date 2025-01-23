@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DateSelector.module.css";
-import MatchList from "../MatchList/MatchList";
 
-const DateSelector = () => {
+const DateSelector = ({ onDateChange, onInitialDate }) => {
 
     const today = new Date();
     const yoil = ['일', '월', '화', '수', '목', '금', '토'];
@@ -19,19 +18,24 @@ const DateSelector = () => {
         };
     });
 
-    const initialDate = `${dates[0].year}-${dates[0].month}-${dates[0].date}`;
-
     // 슬라이드의 시작 인덱스 (현재 화면에 보이는 첫 날짜)
     const [startIndex, setStartIndex] = useState(0);
     // 선택된 날짜의 인덱스 (전체 날짜 배열 기준)
     const [selectedIndex, setSelectedIndex] = useState(0);
-    // 선택된 날짜의 날짜 정보
-    const [selectedDate, setSelectedDate] = useState(initialDate);
 
-    // 날짜 선택 핸들러
+    useEffect(() => {
+        // 초기 날짜 전달
+        if (dates.length > 0) {
+            const initialDate = `${dates[0].year}-${dates[0].month}-${dates[0].date}`;
+            onInitialDate(initialDate); // 초기 날짜를 부모로 전달
+        }
+    }, [dates, onInitialDate]);
+
     const handleDateSelect = (item, index) => {
-        setSelectedDate(`${item.year}-${item.month}-${item.date}`);
-        setSelectedIndex(startIndex + index);
+        const globalIndex = startIndex + index;
+        setSelectedIndex(globalIndex);
+        const selectedDate = dates[globalIndex];
+        onDateChange(`${selectedDate.year}-${selectedDate.month}-${selectedDate.date}`);
     };
 
     // 화살표 클릭 시 슬라이드 이동
@@ -75,7 +79,6 @@ const DateSelector = () => {
                     {">"}
                 </button>
             </div>
-            {selectedDate && <MatchList data={selectedDate} />}
         </div>
     );
 };

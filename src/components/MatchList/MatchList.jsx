@@ -3,18 +3,18 @@ import styles from "./MatchList.module.css";
 import axios from "axios";
 
 const MatchList = ({ data }) => {
+    const { matchDate, filters } = data;
     const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchMatches = async () => {
+            setLoading(true);
             try {
-                console.log(data)
                 const response = await axios.get(
                     "http://localhost:8080/api/matches", {
-                    params: { data: data }
-                }
-                );
+                    params: { matchDate, ...filters },
+                });
                 setMatches(response.data); // API 응답 데이터를 상태에 저장
             } catch (error) {
                 console.error("Error fetching matches:", error);
@@ -24,7 +24,7 @@ const MatchList = ({ data }) => {
         };
 
         fetchMatches();
-    }, [data]);
+    }, [matchDate, filters]);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
