@@ -7,7 +7,7 @@ import Description from "../components/Description/Description";
 
 const MainPage = () => {
     const [selectedDate, setSelectedDate] = useState(""); // 날짜 상태
-    const [filters, setFilters] = useState({ region: "me", gender: "", soldout: false }); // 필터 상태
+    const [filters, setFilters] = useState({ region: "0", gender: "", soldout: false }); // 필터 상태
 
     return (
         <div style={{ margin: "0 25%" }}>

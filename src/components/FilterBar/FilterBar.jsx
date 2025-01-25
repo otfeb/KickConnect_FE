@@ -3,8 +3,7 @@ import styles from "./FilterBar.module.css";
 
 const FilterBar = ({ filters, setFilters }) => {
 
-    // 지역 목록
-    const regions = ["모든 지역", "서울", "경기", "인천", "강원", "대전/세종", "충남", "충북", "대구", "경북", "부산", "울산", "경남", "광주", "전남", "전북", "제주"];
+    const regions = ["서울", "경기", "인천", "부산"];
 
     const genderMapping = {
         남녀모두: 0,
@@ -27,7 +26,7 @@ const FilterBar = ({ filters, setFilters }) => {
             <div className={styles.filterSection}>
                 <select value={filters.region} onChange={handleRegionChange} className={styles.filterSelect}>
                     {regions.map((region, index) => (
-                        <option key={index} value={region}>
+                        <option key={index} value={index}>
                             {region}
                         </option>
                     ))}
@@ -46,7 +45,6 @@ const FilterBar = ({ filters, setFilters }) => {
 
             {/* 성별 필터 */}
             <div className={styles.filterSection}>
-                <label className={styles.filterLabel}>성별:</label>
                 <div className={styles.genderFilters}>
                     {["남자", "여자", "남녀모두"].map((gender, index) => (
                         <button
