@@ -13,10 +13,7 @@ const MainPage = () => {
         <div style={{ margin: "0 25%" }}>
             <Header />
             <Description />
-            <DateSelector
-                onDateChange={setSelectedDate} // 날짜 선택 변경 핸들러
-                onInitialDate={(initialDate) => setSelectedDate(initialDate)} // 초기값 설정 핸들러
-            />
+            <DateSelector onDateChange={setSelectedDate} />
             <FilterBar filters={filters} setFilters={setFilters} />
             {selectedDate && (
                 <MatchList data={{ matchDate: selectedDate, filters }} />

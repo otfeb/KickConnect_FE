@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./DateSelector.module.css";
 
-const DateSelector = ({ onDateChange, onInitialDate }) => {
+const DateSelector = ({ onDateChange }) => {
 
     const today = new Date();
     const yoil = ['일', '월', '화', '수', '목', '금', '토'];
@@ -24,12 +24,12 @@ const DateSelector = ({ onDateChange, onInitialDate }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     useEffect(() => {
-        // 초기 날짜 전달
-        if (dates.length > 0) {
+        // 초기 날짜 전달(초기 상태일 때만 실행)
+        if (dates.length > 0 && selectedIndex === 0) {
             const initialDate = `${dates[0].year}-${dates[0].month}-${dates[0].date}`;
-            onInitialDate(initialDate); // 초기 날짜를 부모로 전달
+            onDateChange(initialDate); // 초기 날짜를 부모로 전달
         }
-    }, [dates, onInitialDate]);
+    }, [dates, onDateChange, selectedIndex]);
 
     const handleDateSelect = (item, index) => {
         const globalIndex = startIndex + index;

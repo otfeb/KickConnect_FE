@@ -33,13 +33,6 @@ const MatchList = ({ data }) => {
         return `${month}월 ${day}일`;
     };
 
-    const formatTime = (timeString) => {
-        const date = new Date(timeString);
-        const hours = String(date.getHours()).padStart(2, "0");
-        const minutes = String(date.getMinutes()).padStart(2, "0");
-        return `${hours}:${minutes}`;
-    };
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -51,14 +44,14 @@ const MatchList = ({ data }) => {
                 {matches.map((match) => (
                     <li key={match.match_id} className={styles.matchItem}>
                         <a
-                            href={`https://www.plabfootball.com/match/${match.match_id}`}
+                            href={match.match_url}
                             className={styles.matchLink}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <div className={styles.left}>
                                 <div>{formatDate(match.match_date)}</div>
-                                <div className={styles.time}>{formatTime(match.match_date)}</div>
+                                <div className={styles.time}>{match.match_time}</div>
                             </div>
                             <div className={styles.appNameWrapper}>
                                 <span className={styles.appName}>{match.app_name}</span>
