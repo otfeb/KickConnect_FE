@@ -54,7 +54,20 @@ const MatchList = ({ data }) => {
                                 <div className={styles.time}>{match.match_time}</div>
                             </div>
                             <div className={styles.appNameWrapper}>
-                                <span className={styles.appName}>{match.app_name}</span>
+                                <span
+                                    className={`${styles.appName} ${match.app_name === "plab"
+                                            ? styles.appNamePlab
+                                            : match.app_name === "puzzle"
+                                                ? styles.appNamePuzzle
+                                                : match.app_name === "urban"
+                                                    ? styles.appNameUrban
+                                                    : match.app_name === "with"
+                                                        ? styles.appNameWith
+                                                        : ""
+                                        }`}
+                                >
+                                    {match.app_name}
+                                </span>
                             </div>
                             <div className={styles.center}>
                                 <div className={styles.locationWrapper}>
