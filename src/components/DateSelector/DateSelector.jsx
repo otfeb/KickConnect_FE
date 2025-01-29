@@ -59,6 +59,7 @@ const DateSelector = ({ onDateChange }) => {
                 >
                     {"<"}
                 </button>
+
                 <div className={styles.dateList}>
                     {dates.slice(startIndex, startIndex + 7).map((item, index) => (
                         <div
@@ -72,6 +73,7 @@ const DateSelector = ({ onDateChange }) => {
                         </div>
                     ))}
                 </div>
+
                 <button
                     className={styles.arrowButton}
                     onClick={() => handleArrowClick("right")}
