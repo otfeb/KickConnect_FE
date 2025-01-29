@@ -12,7 +12,7 @@ const MatchList = ({ data }) => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    "http://localhost:8080/api/matches", {
+                    "https://crython.shop/api/matches", {
                     params: { matchDate, ...filters },
                 });
                 setMatches(response.data); // API 응답 데이터를 상태에 저장
@@ -56,14 +56,14 @@ const MatchList = ({ data }) => {
                             <div className={styles.appNameWrapper}>
                                 <span
                                     className={`${styles.appName} ${match.app_name === "plab"
-                                            ? styles.appNamePlab
-                                            : match.app_name === "puzzle"
-                                                ? styles.appNamePuzzle
-                                                : match.app_name === "urban"
-                                                    ? styles.appNameUrban
-                                                    : match.app_name === "with"
-                                                        ? styles.appNameWith
-                                                        : ""
+                                        ? styles.appNamePlab
+                                        : match.app_name === "puzzle"
+                                            ? styles.appNamePuzzle
+                                            : match.app_name === "urban"
+                                                ? styles.appNameUrban
+                                                : match.app_name === "with"
+                                                    ? styles.appNameWith
+                                                    : ""
                                         }`}
                                 >
                                     {match.app_name}
