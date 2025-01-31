@@ -1,4 +1,11 @@
 .description {
+    font-size: 22px;
     margin: 20px;
     text-align: center;
+}
+
+.sunflower-light {
+    font-family: "Sunflower", serif;
+    font-weight: 300;
+    font-style: normal;
 }

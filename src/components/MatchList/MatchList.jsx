@@ -15,7 +15,20 @@ const MatchList = ({ data }) => {
                     "https://crython.shop/api/matches", {
                     params: { matchDate, ...filters },
                 });
-                setMatches(response.data); // API 응답 데이터를 상태에 저장
+                let fetchedMatches = response.data;
+
+                // 오늘 날짜 선택 시 현재 시간 이후의 경기만 필터링
+                if (matchDate === new Date().toISOString().split("T")[0]) {
+                    const currentTime = new Date();
+                    fetchedMatches = fetchedMatches.filter(match => {
+                        const [hours, minutes] = match.match_time.split(":").map(Number);
+                        const matchTime = new Date();
+                        matchTime.setHours(hours, minutes, 0, 0);
+                        return matchTime > currentTime;
+                    });
+                }
+
+                setMatches(fetchedMatches); // API 응답 데이터를 상태에 저장
             } catch (error) {
                 console.error("Error fetching matches:", error);
             } finally {

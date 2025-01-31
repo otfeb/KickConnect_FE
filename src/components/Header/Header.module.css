@@ -1,8 +1,14 @@
 .header {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     margin: 20px 0;
     padding: 10px 0;
     border-bottom: 2px solid #ccc;
+}
+
+.galindo {
+    font-family: "Galindo", serif;
+    font-weight: 500;
+    font-style: normal;
 }
